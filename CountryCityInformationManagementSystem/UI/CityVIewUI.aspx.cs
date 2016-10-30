@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Drawing;
+using System.Net;
 using CountryCityInformationManagementSystem.BLL;
 
 namespace CountryCityInformationManagementSystem.UI
@@ -13,46 +14,80 @@ namespace CountryCityInformationManagementSystem.UI
         {
             if (!IsPostBack)
             {
-                CountryDropdownList();
+               CountryDropdownList();
             }
+            
         }
 
         CityViewManager cityViewManager=new CityViewManager();
         protected void searchButton_Click(object sender, EventArgs e)
         {
-            GetSelectedCityOrCountryInformation();
-            if (cityListGridView.Rows.Count < 1)
+           GetSelectedCityOrCountryInformation();
+            if (cityListGridView.Rows.Count > 0)
             {
-                messageLabel.Text = "<h3>No Data Found.</h3>";
-                //  messageLabel.ForeColor = ConsoleColor.Red;
-                messageLabel.ForeColor = Color.Red;
+                cityListGridView.Visible = true;
+                
             }
             else
             {
-                messageLabel.Text = string.Empty;
+                cityListGridView.Visible = false;
             }
         }
 
         protected void GetSelectedCityOrCountryInformation()
-        {                     
+        {
+            messageLabel.Text = "";
+                          
             DataSet dataSet = new DataSet();
             
            if (cityNameRadioButton.Checked)
               {
-                  string cityName = cityNameTextBox.Text;
-                  dataSet=cityViewManager.GetSelectedCityInformation(cityName);
-
+                  if (cityNameTextBox.Text == "")
+                  {
+                      messageLabel.Text = "<h3>Please Type a City Name.</h3>";
+                      messageLabel.ForeColor = Color.Red;
+                  }
+                  else
+                  {
+                      string cityName = cityNameTextBox.Text;
+                      dataSet = cityViewManager.GetSelectedCityInformation(cityName);
+                      cityListGridView.DataSource = dataSet;
+                      cityListGridView.DataBind();
+                      if (cityListGridView.Rows.Count < 1)
+                      {
+                           messageLabel.Text = "<h3>No Data Found.</h3>";
+                              messageLabel.ForeColor = Color.Red;
+                         
+                      }
+                  }
+                  
               }
             else if (countryRadioButton.Checked)
               {
-                  string selectedCountryName = countryDropDownList.SelectedValue;
-                  int countryId = cityViewManager.GetSelectedCountryId(selectedCountryName);
+                  if (countryDropDownList.SelectedIndex <= 0)
+                  {
+                     messageLabel.Text = "<h3>Please Select a Country Name.</h3>";
+                      messageLabel.ForeColor = Color.Red;
+                      
+                  }
+                  else
+                  {
+                      string selectedCountryName = countryDropDownList.SelectedValue;
+                      int countryId = cityViewManager.GetSelectedCountryId(selectedCountryName);
 
-                  dataSet = cityViewManager.GetSelectedCountryInformation(countryId);
-                    
+                      dataSet = cityViewManager.GetSelectedCountryInformation(countryId);
+                      cityListGridView.DataSource = dataSet;
+                      cityListGridView.DataBind();
+                      if (cityListGridView.Rows.Count < 1)
+                      {
+                             messageLabel.Text = "<h3>No Data Found.</h3>";
+                              messageLabel.ForeColor = Color.Red;
+                         
+                      }
+                  }
               }
-                cityListGridView.DataSource = dataSet;
-                cityListGridView.DataBind();
+              
+                
             }
         
         protected void gvDetails_PageIndexChanging(object sender, GridViewPageEventArgs e)

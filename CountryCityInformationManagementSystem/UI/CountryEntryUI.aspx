@@ -62,20 +62,36 @@
             text-align: center;
         }
 
-        .footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-   background:#999;
-}
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
 
-/* IE 6 */
-* html .footer {
-   position:absolute;
-   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
-}
+        table, tr, th {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            height: 30px;
+            width: 100%;
+            background: #999;
+        }
+
+        /* IE 6 */
+        * html .footer {
+            position: absolute;
+            top: expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+        }
     </style>
 
     <%-- <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
@@ -85,43 +101,43 @@
 <body>
 
     <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Country City Information</a>
-                    </div>
-                    <div class="collapse navbar-collapse" id="myNavbar">
-                        <ul class="nav navbar-nav">
-                            <li><a href="Home.aspx">Home</a></li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Country <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li class="active"><a href="CountryEntryUI.aspx">Country Add</a></li>
-                                    <li><a href="CountryViewUI.aspx">Country View</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">City <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="CItyEntryUI.aspx">City Add</a></li>
-                                    <li><a href="CityVIewUI.aspx">City View</a></li>
-                                </ul>
-                            </li>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Country City Information</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="Home.aspx">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Country <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="CountryEntryUI.aspx">Country Add</a></li>
+                            <li><a href="CountryViewUI.aspx">Country View</a></li>
                         </ul>
-                        <ul class="nav navbar-nav navbar-right">
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">City <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="CItyEntryUI.aspx">City Add</a></li>
+                            <li><a href="CityVIewUI.aspx">City View</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <%--<ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
                             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-    <div class="container">
+                        </ul>--%>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="display: none">
         <div class="col-md-10 col-md-offset-1">
-            
+
             <%--<div class="col-md-8 col-md-ofset-2">--%>
             <form id="form1" runat="server" class="form-horizontal">
 
@@ -155,6 +171,7 @@
                     <asp:GridView runat="server" ID="countryListGridView" AllowPaging="True" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvDetails_PageIndexChanging" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                         <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                         <HeaderStyle CssClass="headerstyle" BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
+                        <RowStyle HorizontalAlign="Center" />
                         <Columns>
 
                             <asp:TemplateField HeaderText="serial No">
@@ -192,13 +209,13 @@
                 </div>
 
             </form>
-            
+
         </div>
 
     </div>
     <div id="footer" class="footer footer-bottom" style="background-color: black; height: 60px; text-align: center">
-                <p style="color: white; padding: 20px">Copyright @ 2016 Websites</p>
-            </div>
+        <p style="color: white; padding: 20px">Copyright @ 2016 Websites</p>
+    </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -208,9 +225,12 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../Bootstrap/js/bootstrap.min.js"></script>
 
-    <%-- <script>
-        CKEDITOR.replace('aboutTextBox');
-</script>--%>
+    <script>
+        $(document)
+            .ready(function () {
+                $('.container').toggle(3000);
+            });
+    </script>
     <script type="text/javascript">
         $("#saveButton")
             .click(function (e) {
@@ -227,7 +247,7 @@
 
 
                 if (name == '') {
-                    alertify.error('Please type a City Name');
+                    alertify.error('Please type a Country Name');
 
                 }
                 else {

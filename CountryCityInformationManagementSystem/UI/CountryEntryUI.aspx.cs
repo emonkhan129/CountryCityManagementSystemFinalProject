@@ -33,7 +33,7 @@ namespace CountryCityInformationManagementSystem.UI
 
         protected void cancelButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("IndexUI.aspx");
+            Response.Redirect("Home.aspx");
         }
 
       //  protected void saveButton_Click(object sender, EventArgs e)

@@ -35,6 +35,20 @@
             color: #303933;
         }
 
+                p {
+            	text-align: justify;
+                text-justify: inter-word;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        table,tr,th {
+            text-align: center;
+        }
+        img {
+             display: block;
+             margin: 0 auto;
+        }
+
         .headerstyle {
             color: #FFFFFF;
             border-right-color: #abb079;
@@ -88,17 +102,18 @@
           </ul>
         </li>
        </ul>
-      <ul class="nav navbar-nav navbar-right">
+     <%-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
+      </ul>--%>
     </div>
   </div>
 </nav>
 
-    <form id="form1" runat="server">
-        <div class="container">
-            <div class="col-md-10 col-md-offset-1">
+        <div class="container" style="display: none">
+            <div class="col-md-10 col-md-offset-1" >
+                 <form id="form1" runat="server">
+   
                     <table class="tab-content table table-bordered table-responsive">
                         <tr>
                             <div class="form-group">
@@ -124,7 +139,8 @@
                         <asp:GridView runat="server" ID="countryListGridView" AllowPaging="True" AutoGenerateColumns="False" Width="100%" OnPageIndexChanging="gvDetails_PageIndexChanging" BackColor="White" BorderColor="#CC9966" BorderStyle="None" BorderWidth="1px" CellPadding="4">
                             <FooterStyle BackColor="#FFFFCC" ForeColor="#330099" />
                             <HeaderStyle CssClass="headerstyle" BackColor="#990000" Font-Bold="True" ForeColor="#FFFFCC" />
-                            <Columns>
+                             <RowStyle HorizontalAlign="Center" />
+                                <Columns>
                                 
                                 <asp:TemplateField HeaderText="serial No">
                                     <ItemTemplate>
@@ -158,12 +174,12 @@
                         <br />
                         <br />
                     </div>
+                 </form>
                 </div>
             </div>
             <div class="footer" style="background-color: black; height: 60px; text-align: center">
           <p style="color: white; padding: 20px" >Copyright @ 2016 Websites</p>
         </div>
-    </form>
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -171,6 +187,13 @@
     <script src="../alertifyjs/alertify.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../Bootstrap/js/bootstrap.min.js"></script>
+    
+    <script>
+        $(document)
+            .ready(function () {
+                $('.container').fadeIn(3000);
+            });
+</script>
 </body>
 </html>
 
